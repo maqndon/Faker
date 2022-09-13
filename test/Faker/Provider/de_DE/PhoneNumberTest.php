@@ -10,7 +10,6 @@ use Faker\Test\TestCase;
  */
 final class PhoneNumberTest extends TestCase
 {
-
     public function testPhoneNumber()
     {
         for ($i = 0; $i < 100; ++$i) {
@@ -19,7 +18,6 @@ final class PhoneNumberTest extends TestCase
             // Test format
             self::assertMatchesRegularExpression('/^(\+?49)?(0)?(\s?\(?\d{2,6}\)?)(\s?)(\d{3})(\s?)(\d{3,4})$/', $number);
         }
-
     }
 
     public function testE164PhoneNumberFormat()

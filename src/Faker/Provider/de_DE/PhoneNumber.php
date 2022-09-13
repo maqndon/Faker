@@ -31,70 +31,71 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '+49 (0{{areaCode}}) ### ####',
         '+49{{areaCode}}#######',
         '+49{{areaCode}}### ####',
-        
+
         // Standard formats
         '0{{areaCode}} ### ####',
         '0{{areaCode}} #######',
         '(0{{areaCode}}) ### ####',
         '(0{{areaCode}}) #######',
     ];
-    
+
     protected static $e164Formats = [
         '+49{{areaCode}}#######',
     ];
-    
+
     /**
      * @see https://en.wikipedia.org/wiki/Toll-free_telephone_number
      */
     protected static $tollFreeAreaCodes = [
         800,
     ];
-    
+
     protected static $tollFreeFormats = [
         // Standard formats
         '0{{tollFreeAreaCode}} ### ####',
         '(0{{tollFreeAreaCode}}) ### ####',
         '+49{{tollFreeAreaCode}} ### ####',
     ];
-    
+
     public function tollFreeAreaCode()
     {
         return self::randomElement(static::$tollFreeAreaCodes);
     }
-    
+
     public function tollFreePhoneNumber()
     {
         $format = self::randomElement(static::$tollFreeFormats);
-        
+
         return self::numerify($this->generator->parse($format));
     }
-    
+
     protected static $mobileCodes = [
         1511, 1512, 1514, 1515, 1516, 1517,
         1520, 1521, 1522, 1523, 1525, 1526, 1529,
         1570, 1573, 1575, 1577, 1578, 1579,
         1590,
     ];
-    
+
     protected static $mobileFormats = [
         '+49{{mobileCode}}#######',
         '+49 {{mobileCode}} ### ####',
         '0{{mobileCode}}#######',
         '0{{mobileCode}} ### ####',
-        '0 {{mobileCode}} ### ####'
+        '0 {{mobileCode}} ### ####',
     ];
-    
+
     /**
      * @see https://en.wikipedia.org/wiki/List_of_dialling_codes_in_Germany
+     *
      * @return string
      */
     public static function areaCode()
     {
         $firstDigit = self::numberBetween(2, 9);
-        
+
         return $firstDigit . self::regexify(self::$areaCodeRegexes[$firstDigit]);
     }
-    
+
     /**
      * Generate a code for a mobile number.
      *
